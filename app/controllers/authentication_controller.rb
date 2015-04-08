@@ -12,7 +12,7 @@ class AuthenticationController < ApplicationController
       flash[:notice] = "You are signed in as #{@user.user_name}"
     else
       @user = User.new
-      @user.errors[:email] << ' / Password combination is invalid'
+      @user.errors[:user_name] << ' / Password combination is invalid'
       render :new
     end
   end

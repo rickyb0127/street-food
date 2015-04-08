@@ -7,6 +7,6 @@ get 'sign-out', to: 'authentication#destroy'
 get 'sign-in', to: 'authentication#new'
 post 'sign-in', to: 'authentication#create'
 
-resources :recipes, only:[:index]
+resources :recipes, only:[:index, :show]
 
 end

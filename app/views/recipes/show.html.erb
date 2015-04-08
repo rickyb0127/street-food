@@ -1,0 +1,12 @@
+<h3><%= raw @get_recipes[:attribution][:html] %></h3>
+
+<% @get_recipes[:images].each do |image| %>
+  <%= image_tag image[:hostedLargeUrl] %>
+<% end %>
+
+<ul><%= @get_recipes[:yield] %></ul>
+<% @get_recipes[:ingredientLines].each do |ingredients|%>
+  <ul><%= ingredients %></ul>
+<% end %>
+
+<h3>Discusion</h3>

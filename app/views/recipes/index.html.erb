@@ -1,3 +1,18 @@
 <% @recipes.each do |recipe| %>
-  <p><%= recipe[0] %></p>
+  <% if recipe[1].class != Fixnum %>
+    <% recipe.each do |newstuff| %>
+  <% if newstuff.class == Hash %>
+    <%= raw newstuff[:html] %>
+  <% end %>
+
+  <% if newstuff.class == Array %>
+    <% newstuff.each do |more| %>
+    <p><%= link_to more[:recipeName], recipe_path(more[:id]) %></p>
+      <% if more[:imageUrlsBySize].present? %>
+        <p><%= image_tag more[:imageUrlsBySize][:"90"] %></p>
+      <% end %>
+    <% end %>
+    <% end %>
+  <% end %>
+  <% end %>
 <% end %>
