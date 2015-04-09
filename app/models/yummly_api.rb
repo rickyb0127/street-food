@@ -21,4 +21,12 @@ class YummlyAPI
     end
     JSON.parse(response.body, symbolize_names: true)
   end
+
+  def set_recipes
+    response = @conn.get do |req|
+      req.url "http://api.yummly.com/v1/api/recipes?_app_id=5b570d0a&_app_key=9f92ef3b82c056281393cbe1996ad439&maxResult=100&start=1"
+      req.headers['Content-Type'] = 'application/json'
+    end
+    JSON.parse(response.body, symbolize_names: true)
+  end
 end

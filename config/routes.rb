@@ -8,5 +8,9 @@ get 'sign-in', to: 'authentication#new'
 post 'sign-in', to: 'authentication#create'
 
 resources :recipes, only:[:index, :show]
+resources :comments, only:[:create]
+resources :about, only:[:index]
+resources :contact, only:[:index]
+resources :careers, only:[:index]
 
 end

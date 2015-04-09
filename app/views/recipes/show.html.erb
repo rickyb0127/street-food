@@ -1,12 +1,28 @@
-<h3><%= raw @get_recipes[:attribution][:html] %></h3>
+<h3><%= link_to @get_recipes[:name], @get_recipes[:source][:sourceRecipeUrl] %></h3>
 
 <% @get_recipes[:images].each do |image| %>
-  <%= image_tag image[:hostedLargeUrl] %>
+  <p><%= image_tag image[:hostedLargeUrl] %></p>
 <% end %>
 
 <ul><%= @get_recipes[:yield] %></ul>
+Ingredients
 <% @get_recipes[:ingredientLines].each do |ingredients|%>
-  <ul><%= ingredients %></ul>
+  <li><%= ingredients %></li>
 <% end %>
 
 <h3>Discusion</h3>
+
+<% @comments.each do |comment| %>
+  <p><%= comment.body %></p>
+  <p>posted by <%= comment.user.user_name %>
+  <%= time_ago_in_words(comment.created_at) %> ago</p>
+
+<% end %>
+
+<%= form_for @comment do |f| %>
+
+  <%= f.label :body, "Comment" %>
+  <%= f.text_area :body%>
+
+  <p><%= f.submit "Add Comment", class: "btn btn-primary" %></p>
+<% end %>

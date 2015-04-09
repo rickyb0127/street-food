@@ -7,5 +7,7 @@ class RecipesController < ApplicationController
   def show
     yummly_api = YummlyAPI.new
     @get_recipes = yummly_api.get_recipes(params[:id])
+    @comment = Comment.new
+    @comments = Comment.all
   end
 end

@@ -1,1 +1,7 @@
 <h1>Welcome to Street Food Recipes</h1>
+
+<% @set_recipes[:matches].each do |img| %>
+  <% if img[:imageUrlsBySize].class == Hash %>
+    <%= image_tag img[:imageUrlsBySize][:"90"] %>
+  <% end %>
+<% end %>
