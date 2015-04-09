@@ -4,7 +4,6 @@
   <p><%= image_tag image[:hostedLargeUrl] %></p>
 <% end %>
 
-<ul><%= @get_recipes[:yield] %></ul>
 Ingredients
 <% @get_recipes[:ingredientLines].each do |ingredients|%>
   <li><%= ingredients %></li>
@@ -13,13 +12,14 @@ Ingredients
 <h3>Discusion</h3>
 
 <% @comments.each do |comment| %>
-  <p><%= comment.body %></p>
-  <p>posted by <%= comment.user.user_name %>
-  <%= time_ago_in_words(comment.created_at) %> ago</p>
-
+  <% if comment.recipe_id == @get_recipes[:id] %>
+    <p><%= comment.body %></p>
+    <p>posted by <%= comment.user.user_name %>
+    <%= time_ago_in_words(comment.created_at) %> ago</p>
+  <% end %>
 <% end %>
 
-<%= form_for @comment do |f| %>
+<%= form_for [@get_recipes, @comment], url: recipe_comments_path(@get_recipes[:id]) do |f| %>
 
   <%= f.label :body, "Comment" %>
   <%= f.text_area :body%>
