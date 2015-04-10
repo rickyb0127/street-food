@@ -1,0 +1,9 @@
+<div class="page-header">
+  <h1>Shopping Lists for <%= current_user.user_name %></h1>
+</div>
+
+<% @shopping_lists.each do |list| %>
+  <p><h4><%= list.recipe_hash["name"] %></h4></p>
+Ingredients
+  <p><%= list.recipe_hash["ingredientLines"] %></p>
+<% end %>

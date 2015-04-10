@@ -5,6 +5,8 @@
     <%= raw newstuff[:html] %>
   <% end %>
 
+<p></p>
+
   <% if newstuff.class == Array %>
     <% newstuff.each do |more| %>
     <p><%= link_to more[:recipeName], recipe_path(more[:id]) %></p>

@@ -1,4 +1,9 @@
 source 'https://rubygems.org'
+
+gem 'responders', '~> 2.0'
+
+gem 'json', '~> 1.8.2'
+
 gem 'rails_12factor', group: :production
 
 gem 'faraday', '~> 0.9.0'

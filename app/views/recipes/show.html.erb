@@ -5,17 +5,29 @@
 <% end %>
 
 Ingredients
+
 <% @get_recipes[:ingredientLines].each do |ingredients|%>
   <li><%= ingredients %></li>
 <% end %>
 
-<h3>Discusion</h3>
+<br>
+
+<%= form_for @shopping_list do |f| %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+  <%= f.hidden_field :recipe_hash, :value => @get_recipes_hash %>
+  <%= f.submit "add ingredients to shopping list", class: "btn btn-primary" %>
+<% end %>
+
+<h3>Discussion</h3>
 
 <% @comments.each do |comment| %>
   <% if comment.recipe_id == @get_recipes[:id] %>
     <p><%= comment.body %></p>
     <p>posted by <%= comment.user.user_name %>
     <%= time_ago_in_words(comment.created_at) %> ago</p>
+      <% if comment.user_id == current_user.id %>
+        <p><%= link_to "delete", recipe_comment_path(@get_recipes[:id], comment), method: :delete %></p>
+      <% end %>
   <% end %>
 <% end %>
 
